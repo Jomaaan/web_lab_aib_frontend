@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JS</title>
+</head>
+<body>
+<script>
+
+	//Задача 1
+
+    const apple = 10
+    alert(apple)
+    console.log(apple)
+    const condition = 'first'
+    console.log( condition)
+
+	//Задача 2
+
+    const num = 29
+    const string = '100'
+    const bool = true
+    console.log(num + string)
+    console.log(num + bool)
+    console.log(string + num)
+    console.log(string + bool)
+    console.log(bool + num)
+    console.log(bool + string)
+
+	// Задача 3
+
+    const array1 = []
+    for (let i = 0; i < 10; i++) {
+      let numAdd = Math.floor(Math.random() * 20) - 10
+      array1.push(numAdd)
+    }
+    const filterArr1 = array1.filter((item) => {
+      return item > 0
+    })
+    console.log(`Исходный массив: ${array1}\nОтфильтрованный массив: ${filterArr1}`)
+
+    const array2 = []
+    for (let i = 0; i < 10; i++) {
+      let numAdd = Math.floor(Math.random() * 20) - 10
+      array2.push(numAdd)
+    }
+
+    const filterArr2 = array2.filter((item) => {
+      return item > 0
+    })
+
+    console.log(`Исходный массив: ${array2}\nОтфильтрованный массив: ${filterArr2}`)
+
+
+    //Задача 4
+
+    const randomNum = (max, min) => {
+      return Math.floor(Math.random() * max - min + 1)
+    }
+
+    const random = randomNum(100, 2)
+    console.log(random)
+
+    const array = [1, 2, 3, 4, 5]
+    const multNum = 5
+
+    const multArray = (arr, num) => {
+      const res = arr.map((item) => {
+        return item * num
+      })
+      return res
+    }
+    console.log(multArray(array, multNum))
+
+    const generateWord = () => {
+      const alphabet = 'dsnfsjlfnsjfnskjfs'
+      const wordLength = Math.floor(Math.random() * 7) + 1 
+      let randomWord = ''
+
+      for (let i = 0; i < wordLength; i++) {
+        const randomIndex = Math.floor(Math.random() * alphabet.length)
+        randomWord += alphabet.charAt(randomIndex)
+      }
+      return randomWord
+    }
+    console.log(generateWord())
+
+
+    const obj = {}
+
+    obj.firstName = 'Герман'
+    obj.surname = 'Чигилов'
+    obj.patronymic = 'Максимович'
+    obj.birthday = 2003
+    obj.hobby = 'Анжуманя'
+    obj.group = 'АИБ-042'
+
+
+    obj.FIO = function() {
+        return `${this.surname} ${this.firstName} ${this.patronymic}`
+      }
+
+    obj.getFullInfo = function() {
+      const fullName = obj.FIO('surname', 'firstName', 'patronymic')
+      const birthYear = this.birthday
+      const personHobby = this.hobby
+      const currentDate = new Date()
+      const currentYear = currentDate.getFullYear()
+      const age = currentYear - birthYear
+      return `ФИО: ${fullName}, \nГод рождения: ${birthYear}, \nХобби: ${personHobby},\nВозраст: ${age}`
+    }
+
+    console.log(obj.getFullInfo())
+
+	//Задача 5
+
+    const salary = {
+      'Буря': 3045,
+      'Стаценко': 12,
+      'Картавченко': 234,
+      'Киёк': 10,
+      'Мартяков': 250,
+      'Бондаренко': 70,
+      'Базилев': 120,
+      'Чигилов': 1000,
+      'Чиннов': 1,
+      'Небоженко': 10,
+    }
+
+    let sumSal = 0
+
+    for (const value in salary) {
+      sumSal += salary[value]
+    }
+    console.log(sumSal)
+
+</script>
+</body>
+</html>
+/*
+ВОПРОСЫ
+
+Через какой оператор Вы объявили переменую?
+
+Переменная была объявлена с использованием оператора const.
+
+Какие доступны операторы для объявления переменных? В чём их отличия?
+
+Доступны следующие операторы:
+var: объявляет переменную, ограниченную функцией или скриптом, если переменная является глобальной.
+let: объявляет переменную с областью видимости блока.
+const: объявляет константу, значение которой нельзя изменить после присваивания.
+
+Что происходит при вызове alert()?
+
+При вызове функции alert() браузер отображает диалоговое окно с текстовым сообщением, переданным в качестве аргумента.
+Как Вы думаете для чего может использоваться console.log()
+
+Для вывода значений и результатов функций в консоль браузера.
+*/
