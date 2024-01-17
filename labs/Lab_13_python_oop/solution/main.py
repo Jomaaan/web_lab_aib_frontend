@@ -1,28 +1,13 @@
-from datetime import datetime
 import json
-import os
+from config import clientPath, paymentsPath, OUTPUT_FILE_NAME
 from writer import XlsAnalyticPaymentWriter
 
-def load_data(file_path):
-    full_path = os.path.join(
-        "C:\lab13_Solution",
-        file_path
-    )
+if __name__ == "__main__":
+    with open(clientPath, "r", encoding="utf-8") as f:
+        data_clients = json.load(f)
+    with open(paymentsPath, "r", encoding="utf-8") as f:
+        data_payments = json.load(f)
+    data = {"clients": data_clients["clients"], "payments": data_payments["payments"]}
 
-    with open(full_path, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    return data
-
-if __name__ == '__main__':
-    data_clients = load_data('clients.json')
-    data_payments = load_data('payments.json')
-
-    data = {'clients': data_clients['clients'], 'payments': data_payments['payments']}
-
-    timestamp = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-    output_file = f'my_payments_analytics_{timestamp}.xlsx'
-
-    xls_writer = XlsAnalyticPaymentWriter(data)
-    xls_writer.write_excel_report(output_file)
-
-    print(f"Report generated successfully. Output file: {output_file}")
+    output = XlsAnalyticPaymentWriter(data)
+    output.write_excel_report(OUTPUT_FILE_NAME)
